@@ -24,8 +24,8 @@ use App\Http\Controllers\API\PagingController;
 Route::post('/query_test',[PagingController::class, 'query_test']);
 Route::get('/all',[PagingController::class, 'all']);
 Route::get('/db',[PagingController::class, 'db']);
-Route::get('/join',[PagingController::class, 'join']);
-Route::get('/elo',[PagingController::class, 'joinElo']);
+Route::get('/joinDB',[PagingController::class, 'joinDB']);
+Route::get('/joinElo',[PagingController::class, 'joinElo']);
 Route::get('/eloBelongTo',[PagingController::class, 'joinEloBelongTo']);
 
 //failed
@@ -34,6 +34,7 @@ Route::get('/tc',[PagingController::class, 'tc']);
 
 //paging
 Route::get('/paging',[PagingController::class, 'paging']);
+
 
 use App\Http\Controllers\API\DataController;
 //crud
