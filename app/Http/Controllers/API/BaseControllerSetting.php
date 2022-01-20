@@ -77,7 +77,7 @@ class BaseControllerSetting extends Controller
             null,
             null,
         );
-        return response()->json($response, 404);
+        return response()->json($response, 200);
     }
 
     public function responseError($th) {
