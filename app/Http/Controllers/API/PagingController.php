@@ -124,7 +124,7 @@ class PagingController extends BaseController
     public function paging(Request $r) {
         try {
             $limit = $r->limit ? $r->limit : 10;
-            $page = $r->page;
+            $page = $r->page ? $r->page : 1;
             $start_date = $r->start_date;
             $end_date = $r->end_date;
 
@@ -132,7 +132,7 @@ class PagingController extends BaseController
 
             if ($start_date) {
                 $query = $query->whereDate('created_at', '>=', $start_date)
-                    ->whereDate('updated_at', '<=', $end_date);
+                    ->whereDate('created_at', '<=', $end_date);
             }
 
             // $query = $query->where(['id'=>0]);

@@ -28,12 +28,13 @@ class BaseController extends BaseControllerSetting
     public function generateInfoPagination($dataParsing, $limit, $page) {
         $count = $dataParsing->paginate()->total();
         $totalPage = $this->initParams($count, $limit);
-        $info = new stdClass();
         $next = $page+1;
         $prev = $page-1;
+        
+        $info = new stdClass();
         $info->total = $count;
         $info->totalPage = $totalPage;
-        $info->page = (int)$page;
+        $info->page = (int) $page;
 
         if($page>$totalPage || $page <= 0){
             $info->next = null;
