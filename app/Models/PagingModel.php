@@ -6,7 +6,7 @@ use App\MyApp;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Paging extends Model
+class PagingModel extends Model
 {
     use HasFactory;
     protected $table = "paging";
@@ -14,10 +14,10 @@ class Paging extends Model
     protected $casts = MyApp::datetime;
     
     public function more(){
-        return $this->hasMany(More::class, 'id_paging', 'id');
+        return $this->hasMany(MoreModel::class, 'id_paging', 'id');
     }
     
     public function one(){
-        return $this->hasOne(One::class, 'id_paging', 'id');
+        return $this->hasOne(OneModel::class, 'id_paging', 'id');
     }
 }

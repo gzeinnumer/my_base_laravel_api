@@ -9,6 +9,11 @@ class MyApp {
 }
 
 /*
+//app
+//config/app.php -> this file
+*/
+
+/*
 'aliases' => [
   //...
   'MyApp' => App\MyApp::class,

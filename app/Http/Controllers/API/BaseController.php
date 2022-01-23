@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
 use stdClass;
 
 class BaseController extends BaseControllerSetting
 {
-
     protected function initParams($total, $perPage) {
         $totalPage = $total/$perPage;
         $isMore = $totalPage > (int) $totalPage;
@@ -16,7 +14,7 @@ class BaseController extends BaseControllerSetting
 
     public function generateInfoList($data) {
         $info = new stdClass();
-        $info->total = count($data) != null ? count($data):null;
+        $info->total = count($data) != null ? count($data) : null;
         $info->totalPage = null;
         $info->page = null;
         $info->next = null;

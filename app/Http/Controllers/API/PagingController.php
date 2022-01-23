@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\EmptyModel;
-use App\Models\More;
-use App\Models\One;
-use App\Models\Paging;
+use App\Models\MoreModel;
+use App\Models\OneModel;
+use App\Models\PagingModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use stdClass;
 
 class PagingController extends BaseController
 {
@@ -18,11 +17,11 @@ class PagingController extends BaseController
 
     public function all() {
         try {
-            $result = Paging::all();
+            $result = PagingModel::all();
             // $result = Paging::select()->where(['id' => 0])->get();
 
             $info = $this->generateInfoList($result);
-            
+
             return $this->finalResultList($info->total > 0, 1, 0, $result, $info);
         } catch (\Throwable $th) {
             return $this->responseError($th);
@@ -47,6 +46,7 @@ class PagingController extends BaseController
             $result = DB::select("
                 select p.*, m.more from paging p 
                 left join more m on m.id_paging=p.id
+                group by p.id;
             ");
             // $result = DB::select("
             //     select p.*, m.more from paging p 
@@ -57,7 +57,7 @@ class PagingController extends BaseController
             $res = array();
             foreach($result as $d){
                 $temp = $d;
-                $temp->detail = More::find(['id_paging' => $d->id]);
+                $temp->detail = MoreModel::where(['id_paging' => $d->id])->get();
                 $res[] = $temp;
             }
 
@@ -71,7 +71,7 @@ class PagingController extends BaseController
 
     public function joinElo() {
         try {
-            $result = Paging::with('more', 'one')->get();
+            $result = PagingModel::with('more', 'one')->get();
             // $result = Paging::with('more', 'one')->where(['paging.id' => 0])->get();
 
             $info = $this->generateInfoList($result);
@@ -84,7 +84,7 @@ class PagingController extends BaseController
 
     public function joinEloBelongTo() {
         try {
-            $result = One::with('paging')->get();
+            $result = OneModel::with('paging')->get();
             // $result = One::with('paging')->where(['one.id' => 0])->get();
 
             $info = $this->generateInfoList($result);

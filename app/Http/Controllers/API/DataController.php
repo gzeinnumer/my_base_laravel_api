@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Data;
-use App\Models\EmptyModel;
+use App\Models\DataModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +28,7 @@ class DataController extends BaseController
             DB::beginTransaction();
 
             //type 1 $fillable
-            Data::create($r->all());
+            DataModel::create($r->all());
             
             //type 2
             // $data = new Data();
@@ -47,7 +46,7 @@ class DataController extends BaseController
 
     public function find() {
         try {
-            $result = Data::find(1);
+            $result = DataModel::find(1);
             
             return $this->finalResultSingle($result != null ? 1 : 0, 1, 0, $result);
         } catch (\Throwable $th) {
@@ -57,7 +56,7 @@ class DataController extends BaseController
 
     public function where() {
         try {
-            $result = Data::where('name','like','%zein%')->get();
+            $result = DataModel::where('name','like','%zein%')->get();
             
             $info = $this->generateInfoList($result);
             

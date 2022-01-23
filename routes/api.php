@@ -41,3 +41,8 @@ use App\Http\Controllers\API\DataController;
 Route::post('/data/insert',[DataController::class, 'insert']);
 Route::get('/data/find',[DataController::class, 'find']);
 Route::get('/data/where',[DataController::class, 'where']);
+
+// use App\Http\Controllers\API\PagingControllerZein;
+// Route::prefix('paging')->group(function () {
+//     Route::get('/paging', [, '']); //127.0.0.1:8000/api/paging/paging
+// });

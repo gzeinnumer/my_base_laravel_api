@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use stdClass;
 
 class BaseControllerSetting extends Controller
@@ -95,7 +94,7 @@ class BaseControllerSetting extends Controller
     }
 
     public function finalResultList($total, $codeSuccess, $codeFailed, $result, $info) {
-        if($total > 0){
+        if($total){
             $apiResponse = $this->getApiResponse($codeSuccess);
             return $this->responseList($apiResponse, $result, $info);
         } else{
@@ -105,7 +104,7 @@ class BaseControllerSetting extends Controller
     }
 
     public function finalResultSingle($total, $codeSuccess, $codeFailed, $result) {
-        if($total > 0){
+        if($total){
             $apiResponse = $this->getApiResponse($codeSuccess);
             return $this->responseSingle($apiResponse, $result);
         } else{

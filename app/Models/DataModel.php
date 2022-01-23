@@ -6,7 +6,7 @@ use App\MyApp;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Data extends Model
+class DataModel extends Model
 {
     use HasFactory;
     protected $table = "data";
