@@ -47,12 +47,19 @@ class BaseControllerSetting extends Controller
     }
 
     protected function responseSingle($apiResponse, $result) {
+        $info = new stdClass();
+        $info->total = 1;
+        $info->totalPage = null;
+        $info->page = null;
+        $info->next = null;
+        $info->prev = null;
+        
         $response = $this->initResponse(
             1,
             $apiResponse->title,
             $apiResponse->message,
             $result,
-            null
+            $info
         );
         return response()->json($response, 200);
     }
@@ -104,7 +111,7 @@ class BaseControllerSetting extends Controller
     }
 
     public function finalResultSingle($total, $codeSuccess, $codeFailed, $result) {
-        if($total){
+        if($total>0){
             $apiResponse = $this->getApiResponse($codeSuccess);
             return $this->responseSingle($apiResponse, $result);
         } else{
