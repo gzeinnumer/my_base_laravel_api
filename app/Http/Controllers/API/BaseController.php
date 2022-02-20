@@ -46,4 +46,23 @@ class BaseController extends BaseControllerSetting
             return $info;
         }
     }
+
+    public function toPaging($codeSuccess, $dataParsing, $limit, $page) {
+        $result = $dataParsing->paginate($limit, ['*'], 'page', $page)->items();
+
+        $info = $this->generateInfoPagination($dataParsing, $limit, $page);
+
+        return $this->finalResultPaging($codeSuccess, $result, $info);
+    }
+
+    public function toList($result, $codeSuccess, $codeFailed) {
+        $info = $this->generateInfoList($result);
+
+        return $this->finalResultList($info->total > 0, $codeSuccess, $codeFailed, $result, $info);
+    }
+
+    public function toObject($result, $codeSuccess, $codeFailed) {
+        return $this->finalResultSingle($result != null ? 1 : 0, $codeSuccess, $codeFailed, $result);
+    }
 }
+ 

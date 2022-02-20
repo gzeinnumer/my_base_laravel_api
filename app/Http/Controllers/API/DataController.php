@@ -9,7 +9,16 @@ use Illuminate\Support\Facades\Validator;
 
 class DataController extends BaseController
 {
-
+    /*
+    {
+        "status": 1,
+        "title": "Perhatian",
+        "message": "Success",
+        "info": null,
+        "data": null
+    }
+    */
+    //////////////////////////////////////////////////////////////////////INSERT
     public function insert(Request $r) {
         try {
             $input = array(
@@ -44,6 +53,22 @@ class DataController extends BaseController
         }
     }
 
+    /*
+    {
+        "status": 1,
+        "title": "Perhatian",
+        "message": "Success",
+        "info": {
+            "total": 1,
+            "totalPage": null,
+            "page": null,
+            "next": null,
+            "prev": null
+        },
+        "data": { ... }
+    }
+    */
+    //////////////////////////////////////////////////////////////////////FIND
     public function find() {
         try {
             $result = DataModel::find(1);
@@ -54,7 +79,45 @@ class DataController extends BaseController
         }
     }
 
+    public function findSimple() {
+        try {
+            $result = DataModel::find(1);
+            
+            return $this->toObject($result, 1, 0);
+        } catch (\Throwable $th) {
+            return $this->responseError($th);
+        }
+    }
+
+    /*
+    {
+        "status": 1,
+        "title": "Perhatian",
+        "message": "Success",
+        "info": {
+            "total": 5,
+            "totalPage": null,
+            "page": null,
+            "next": null,
+            "prev": null
+        },
+        "data": [ ... ]
+    }
+    */
+    //////////////////////////////////////////////////////////////////////WHERE
     public function where() {
+        try {
+            $result = DataModel::where('name','like','%zein%')->get();
+            
+            $info = $this->generateInfoList($result);
+            
+            return $this->finalResultList($info->total > 0, 1, 0, $result, $info);
+        } catch (\Throwable $th) {
+            return $this->responseError($th);
+        }
+    }
+
+    public function whereSimple() {
         try {
             $result = DataModel::where('name','like','%zein%')->get();
             

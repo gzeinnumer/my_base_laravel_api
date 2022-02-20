@@ -15,6 +15,22 @@ class PagingController extends BaseController
         return $r->all();
     }
 
+    /*
+    {
+        "status": 1,
+        "title": "Perhatian",
+        "message": "Success",
+        "info": {
+            "total": 3,
+            "totalPage": null,
+            "page": null,
+            "next": null,
+            "prev": null
+        },
+        "data": [ ... ]
+    }
+    */
+    //////////////////////////////////////////////////////////////////////ALL
     public function all() {
         try {
             $result = PagingModel::all();
@@ -28,6 +44,33 @@ class PagingController extends BaseController
         }
     }
 
+    public function allSimple() {
+        try {
+            $result = PagingModel::all();
+            // $result = Paging::select()->where(['id' => 0])->get();
+
+            return $this->toList($result, 1, 0);
+        } catch (\Throwable $th) {
+            return $this->responseError($th);
+        }
+    }
+
+    /*
+    {
+        "status": 1,
+        "title": "Perhatian",
+        "message": "Success",
+        "info": {
+            "total": 3,
+            "totalPage": null,
+            "page": null,
+            "next": null,
+            "prev": null
+        },
+        "data": [ ... ]
+    }
+    */
+    //////////////////////////////////////////////////////////////////////DB
     public function db() {
         try {
             $result = DB::select("select * from paging");
@@ -41,17 +84,43 @@ class PagingController extends BaseController
         }
     }
 
+    public function dbSimple() {
+        try {
+            $result = DB::select("select * from paging");
+            // $result = DB::select("select * from paging where id=0");
+
+            return $this->toList($result, 1, 0);
+        } catch (\Throwable $th) {
+            return $this->responseError($th);
+        }
+    }
+
+    /*
+    {
+        "status": 1,
+        "title": "Perhatian",
+        "message": "Success",
+        "info": {
+            "total": 3,
+            "totalPage": null,
+            "page": null,
+            "next": null,
+            "prev": null
+        },
+        "data": [ ... ]
+    }
+    */
+    //////////////////////////////////////////////////////////////////////JOIN DB
     public function joinDB() {
         try {
             $result = DB::select("
                 select p.*, m.more from paging p 
-                left join more m on m.id_paging=p.id
-                group by p.id;
+                left join more m on m.id_paging=p.id;
             ");
             // $result = DB::select("
             //     select p.*, m.more from paging p 
             //     left join more m on m.id_paging=p.id
-            //     where p.id = 0
+            //     where p.id = 0;
             // ");
             
             $res = array();
@@ -69,6 +138,47 @@ class PagingController extends BaseController
         }
     }
 
+    public function joinDBSimple() {
+        try {
+            $result = DB::select("
+                select p.*, m.more from paging p 
+                left join more m on m.id_paging=p.id;
+            ");
+            // $result = DB::select("
+            //     select p.*, m.more from paging p 
+            //     left join more m on m.id_paging=p.id
+            //     where p.id = 0;
+            // ");
+            
+            $res = array();
+            foreach($result as $d){
+                $temp = $d;
+                $temp->detail = MoreModel::where(['id_paging' => $d->id])->get();
+                $res[] = $temp;
+            }
+
+            return $this->toList($result, 1, 0);
+        } catch (\Throwable $th) {
+            return $this->responseError($th);
+        }
+    }
+
+    /*
+    {
+        "status": 1,
+        "title": "Perhatian",
+        "message": "Success",
+        "info": {
+            "total": 3,
+            "totalPage": null,
+            "page": null,
+            "next": null,
+            "prev": null
+        },
+        "data": [ ... ]
+    }
+    */
+    //////////////////////////////////////////////////////////////////////JOIN ELO
     public function joinElo() {
         try {
             $result = PagingModel::with('more', 'one')->get();
@@ -82,6 +192,33 @@ class PagingController extends BaseController
         }
     }
 
+    public function joinEloSimple() {
+        try {
+            $result = PagingModel::with('more', 'one')->get();
+            // $result = Paging::with('more', 'one')->where(['paging.id' => 0])->get();
+
+            return $this->toList($result, 1, 0);
+        } catch (\Throwable $th) {
+            return $this->responseError($th);
+        }
+    }
+
+    /*
+    {
+        "status": 1,
+        "title": "Perhatian",
+        "message": "Success",
+        "info": {
+            "total": 3,
+            "totalPage": null,
+            "page": null,
+            "next": null,
+            "prev": null
+        },
+        "data": [ ... ]
+    }
+    */
+    //////////////////////////////////////////////////////////////////////JOIN ELO BELONG
     public function joinEloBelongTo() {
         try {
             $result = OneModel::with('paging')->get();
@@ -95,6 +232,27 @@ class PagingController extends BaseController
         }
     }
 
+    public function joinEloBelongToSimple() {
+        try {
+            $result = OneModel::with('paging')->get();
+            // $result = One::with('paging')->where(['one.id' => 0])->get();
+
+            return $this->toList($result, 1, 0);
+        } catch (\Throwable $th) {
+            return $this->responseError($th);
+        }
+    }
+
+    /*
+    {
+        "status": 0,
+        "title": "Perhatian",
+        "message": "Failed",
+        "info": null,
+        "data": null
+    }
+    */
+    //////////////////////////////////////////////////////////////////////EMPTY
     public function empty() {
         try {
             $result = EmptyModel::all();
@@ -107,6 +265,26 @@ class PagingController extends BaseController
         }
     }
 
+    public function emptySimple() {
+        try {
+            $result = EmptyModel::all();
+
+            return $this->toList($result, 1, 0);
+        } catch (\Throwable $th) {
+            return $this->responseError($th);
+        }
+    }
+
+    /*
+    {
+        "status": -1,
+        "title": "Perhatian",
+        "message": "Attempt to read property \"title\" on null",
+        "info": null,
+        "data": null
+    }
+    */
+    //////////////////////////////////////////////////////////////////////TC
     public function tc() {
         try {
             $result = EmptyModel::all();
@@ -121,6 +299,22 @@ class PagingController extends BaseController
         }
     }
 
+    /*
+    {
+        "status": 1,
+        "title": "Perhatian",
+        "message": "Success",
+        "info": {
+            "total": 21,
+            "totalPage": 3,
+            "page": 2,
+            "next": 3,
+            "prev": 1
+        },
+        "data": [ ... ]
+    }
+    */
+    //////////////////////////////////////////////////////////////////////PAGING
     public function paging(Request $r) {
         try {
             $limit = $r->limit ? $r->limit : 10;
@@ -144,6 +338,28 @@ class PagingController extends BaseController
             $info = $this->generateInfoPagination($dataParsing, $limit, $page);
             
             return $this->finalResultPaging(1, $result, $info);
+        } catch (\Throwable $th) {
+            return $this->responseError($th);
+        }
+    }
+
+    public function pagingSimple(Request $r) {
+        try {
+            $limit = $r->limit ? $r->limit : 10;
+            $page = $r->page ? $r->page : 1;
+            $start_date = $r->start_date;
+            $end_date = $r->end_date;
+
+            $query = DB::table('much_data');
+
+            if ($start_date) {
+                $query = $query->whereDate('created_at', '>=', $start_date)
+                    ->whereDate('created_at', '<=', $end_date);
+            }
+
+            $dataParsing = $query;
+
+            return $this->toPaging(1, $dataParsing, $limit, $page);
         } catch (\Throwable $th) {
             return $this->responseError($th);
         }

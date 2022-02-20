@@ -20,6 +20,8 @@ class BaseControllerSetting extends Controller
             $apiResponse->message = "Failed";
         } else if($code == -1){
             $apiResponse->message = "Error";
+        } else{
+            $apiResponse->message = "jagk";
         }
 
         return $apiResponse;
@@ -37,11 +39,11 @@ class BaseControllerSetting extends Controller
 
     protected function responseList($apiResponse, $result, $info) {
         $response = $this->initResponse(
-            $info->total > 0 ? 1: 0,
-            $apiResponse->title,
-            $apiResponse->message,
-            $result,
-            $info
+            status: $info->total > 0 ? 1: 0,
+            title: $apiResponse->title,
+            message: $apiResponse->message,
+            data: $result,
+            info: $info
         );
         return response()->json($response, 200);
     }
@@ -55,33 +57,33 @@ class BaseControllerSetting extends Controller
         $info->prev = null;
         
         $response = $this->initResponse(
-            1,
-            $apiResponse->title,
-            $apiResponse->message,
-            $result,
-            $info
+            status: 1,
+            title: $apiResponse->title,
+            message: $apiResponse->message,
+            data: $result,
+            info: $info
         );
         return response()->json($response, 200);
     }
 
     protected function responseSuccess($apiResponse) {
         $response = $this->initResponse(
-            1,
-            $apiResponse->title,
-            $apiResponse->message,
-            null,
-            null
+            status: 1,
+            title: $apiResponse->title,
+            message: $apiResponse->message,
+            data: null,
+            info: null
         );
         return response()->json($response, 200);
     }
 
     public function responseFailed($apiResponse) {
         $response = $this->initResponse(
-            0,
-            $apiResponse->title,
-            $apiResponse->message,
-            null,
-            null,
+            status: 0,
+            title: $apiResponse->title,
+            message: $apiResponse->message,
+            data: null,
+            info: null,
         );
         return response()->json($response, 200);
     }
@@ -91,17 +93,17 @@ class BaseControllerSetting extends Controller
         $apiResponse->message = $th->getMessage();
 
         $response = $this->initResponse(
-            -1,
-            $apiResponse->title,
-            $apiResponse->message,
-            null,
-            null,
+            status: -1,
+            title: $apiResponse->title,
+            message: $apiResponse->message,
+            data: null,
+            info: null,
         );
         return response()->json($response, 500);
     }
 
-    public function finalResultList($total, $codeSuccess, $codeFailed, $result, $info) {
-        if($total){
+    public function finalResultList($isSuccess, $codeSuccess, $codeFailed, $result, $info) {
+        if($isSuccess){
             $apiResponse = $this->getApiResponse($codeSuccess);
             return $this->responseList($apiResponse, $result, $info);
         } else{
