@@ -35,6 +35,29 @@
 							"response": []
 						},
 						{
+							"name": "all Simple",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/allSimple",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"allSimple"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "db",
 							"request": {
 								"method": "GET",
@@ -52,6 +75,29 @@
 									"path": [
 										"api",
 										"db"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "dbSimple",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/dbSimple",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"dbSimple"
 									]
 								}
 							},
@@ -81,6 +127,29 @@
 							"response": []
 						},
 						{
+							"name": "joinDBSimple",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/joinDBSimple",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"joinDBSimple"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "joinElo",
 							"request": {
 								"method": "GET",
@@ -104,6 +173,29 @@
 							"response": []
 						},
 						{
+							"name": "joinEloSimple",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/joinEloSimple",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"joinEloSimple"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "empty",
 							"request": {
 								"method": "GET",
@@ -121,6 +213,29 @@
 									"path": [
 										"api",
 										"empty"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "emptySimple",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/emptySimple",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"emptySimple"
 									]
 								}
 							},
@@ -171,6 +286,29 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "eloBelongToSimple",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/eloBelongTo",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"eloBelongTo"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -180,7 +318,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/paging?limit=10&page=3&start_date=&end_date=",
+							"raw": "http://127.0.0.1:8000/api/paging?limit=10&page=2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -200,15 +338,60 @@
 								},
 								{
 									"key": "page",
-									"value": "3"
+									"value": "2"
 								},
 								{
 									"key": "start_date",
-									"value": ""
+									"value": "2023-01-01",
+									"disabled": true
 								},
 								{
 									"key": "end_date",
-									"value": ""
+									"value": "2023-01-01",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "paging Simple",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/pagingSimple?limit=10&page=2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"pagingSimple"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "start_date",
+									"value": "2023-01-01",
+									"disabled": true
+								},
+								{
+									"key": "end_date",
+									"value": "2023-01-01",
+									"disabled": true
 								}
 							]
 						}
@@ -221,12 +404,21 @@
 			"name": "data",
 			"item": [
 				{
-					"name": "data/find",
+					"name": "data/insert",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"zein 2145\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/data/find",
+							"raw": "http://127.0.0.1:8000/api/data/insert",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -238,7 +430,7 @@
 							"path": [
 								"api",
 								"data",
-								"find"
+								"insert"
 							]
 						}
 					},
@@ -269,21 +461,12 @@
 					"response": []
 				},
 				{
-					"name": "data/insert",
+					"name": "data/whereSimple",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"zein 214\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/data/insert",
+							"raw": "http://127.0.0.1:8000/api/data/whereSimple",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -295,7 +478,55 @@
 							"path": [
 								"api",
 								"data",
-								"insert"
+								"whereSimple"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "data/find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/data/find",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"data",
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "data/findSimple",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/data/findSimple",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"data",
+								"findSimple"
 							]
 						}
 					},
