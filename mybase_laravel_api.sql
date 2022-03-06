@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 03 Feb 2022 pada 10.04
--- Versi server: 10.4.21-MariaDB
--- Versi PHP: 7.3.31
+-- Host: localhost
+-- Generation Time: Mar 06, 2022 at 01:10 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data`
+-- Table structure for table `data`
 --
 
 CREATE TABLE `data` (
@@ -35,19 +35,21 @@ CREATE TABLE `data` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `data`
+-- Dumping data for table `data`
 --
 
 INSERT INTO `data` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'zein', '2022-01-09 14:53:35', '2022-01-09 21:54:14'),
 (2, 'zein 2', '2022-01-09 15:03:24', '2022-01-09 15:03:24'),
 (3, 'zein 24', '2022-01-10 16:24:18', '2022-01-10 16:24:18'),
-(4, 'zein 214', '2022-01-10 16:26:00', '2022-01-10 16:26:00');
+(4, 'zein 214', '2022-01-10 16:26:00', '2022-01-10 16:26:00'),
+(5, 'zein 2145', '2022-02-20 09:07:53', '2022-02-20 09:07:53'),
+(6, 'zein 2145 a', '2022-03-06 12:02:59', '2022-03-06 12:02:59');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `empty`
+-- Table structure for table `empty`
 --
 
 CREATE TABLE `empty` (
@@ -60,7 +62,7 @@ CREATE TABLE `empty` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `more`
+-- Table structure for table `more`
 --
 
 CREATE TABLE `more` (
@@ -72,7 +74,7 @@ CREATE TABLE `more` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `more`
+-- Dumping data for table `more`
 --
 
 INSERT INTO `more` (`id`, `id_paging`, `more`, `created_at`, `updated_at`) VALUES
@@ -83,7 +85,7 @@ INSERT INTO `more` (`id`, `id_paging`, `more`, `created_at`, `updated_at`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `much_data`
+-- Table structure for table `much_data`
 --
 
 CREATE TABLE `much_data` (
@@ -94,7 +96,7 @@ CREATE TABLE `much_data` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `much_data`
+-- Dumping data for table `much_data`
 --
 
 INSERT INTO `much_data` (`id`, `name`, `created_at`, `updated_at`) VALUES
@@ -123,7 +125,7 @@ INSERT INTO `much_data` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `one`
+-- Table structure for table `one`
 --
 
 CREATE TABLE `one` (
@@ -135,7 +137,7 @@ CREATE TABLE `one` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `one`
+-- Dumping data for table `one`
 --
 
 INSERT INTO `one` (`id`, `id_paging`, `one`, `created_at`, `updated_at`) VALUES
@@ -144,7 +146,7 @@ INSERT INTO `one` (`id`, `id_paging`, `one`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `paging`
+-- Table structure for table `paging`
 --
 
 CREATE TABLE `paging` (
@@ -156,7 +158,7 @@ CREATE TABLE `paging` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `paging`
+-- Dumping data for table `paging`
 --
 
 INSERT INTO `paging` (`id`, `name`, `detail`, `created_at`, `updated_at`) VALUES
@@ -169,96 +171,96 @@ INSERT INTO `paging` (`id`, `name`, `detail`, `created_at`, `updated_at`) VALUES
 --
 
 --
--- Indeks untuk tabel `data`
+-- Indexes for table `data`
 --
 ALTER TABLE `data`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`) USING HASH;
 
 --
--- Indeks untuk tabel `empty`
+-- Indexes for table `empty`
 --
 ALTER TABLE `empty`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `more`
+-- Indexes for table `more`
 --
 ALTER TABLE `more`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_paging` (`id_paging`);
 
 --
--- Indeks untuk tabel `much_data`
+-- Indexes for table `much_data`
 --
 ALTER TABLE `much_data`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `one`
+-- Indexes for table `one`
 --
 ALTER TABLE `one`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_paging` (`id_paging`);
 
 --
--- Indeks untuk tabel `paging`
+-- Indexes for table `paging`
 --
 ALTER TABLE `paging`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `data`
+-- AUTO_INCREMENT for table `data`
 --
 ALTER TABLE `data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `empty`
+-- AUTO_INCREMENT for table `empty`
 --
 ALTER TABLE `empty`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `more`
+-- AUTO_INCREMENT for table `more`
 --
 ALTER TABLE `more`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `much_data`
+-- AUTO_INCREMENT for table `much_data`
 --
 ALTER TABLE `much_data`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT untuk tabel `one`
+-- AUTO_INCREMENT for table `one`
 --
 ALTER TABLE `one`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `paging`
+-- AUTO_INCREMENT for table `paging`
 --
 ALTER TABLE `paging`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `more`
+-- Constraints for table `more`
 --
 ALTER TABLE `more`
   ADD CONSTRAINT `more_ibfk_1` FOREIGN KEY (`id_paging`) REFERENCES `paging` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `one`
+-- Constraints for table `one`
 --
 ALTER TABLE `one`
   ADD CONSTRAINT `one_ibfk_1` FOREIGN KEY (`id_paging`) REFERENCES `paging` (`id`);

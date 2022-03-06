@@ -361,7 +361,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/pagingSimple?limit=10&page=2",
+							"raw": "http://127.0.0.1:8000/api/pagingSimple?limit=10&page=1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -381,7 +381,7 @@
 								},
 								{
 									"key": "page",
-									"value": "2"
+									"value": "1"
 								},
 								{
 									"key": "start_date",
