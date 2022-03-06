@@ -15,10 +15,10 @@ class BaseController extends BaseControllerSetting
     public function generateInfoList($data) {
         $info = new stdClass();
         $info->total = count($data) != null ? count($data) : null;
-        $info->totalPage = null;
-        $info->page = null;
-        $info->next = null;
-        $info->prev = null;
+        // $info->totalPage = null;
+        // $info->page = null;
+        // $info->next = null;
+        // $info->prev = null;
 
         return $info;
     }

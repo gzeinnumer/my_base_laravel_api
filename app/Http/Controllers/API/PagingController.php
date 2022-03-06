@@ -21,11 +21,7 @@ class PagingController extends BaseController
         "title": "Perhatian",
         "message": "Success",
         "info": {
-            "total": 3,
-            "totalPage": null,
-            "page": null,
-            "next": null,
-            "prev": null
+            "total": 3
         },
         "data": [ ... ]
     }
@@ -61,11 +57,7 @@ class PagingController extends BaseController
         "title": "Perhatian",
         "message": "Success",
         "info": {
-            "total": 3,
-            "totalPage": null,
-            "page": null,
-            "next": null,
-            "prev": null
+            "total": 3
         },
         "data": [ ... ]
     }
@@ -101,11 +93,7 @@ class PagingController extends BaseController
         "title": "Perhatian",
         "message": "Success",
         "info": {
-            "total": 3,
-            "totalPage": null,
-            "page": null,
-            "next": null,
-            "prev": null
+            "total": 3
         },
         "data": [ ... ]
     }
@@ -169,11 +157,7 @@ class PagingController extends BaseController
         "title": "Perhatian",
         "message": "Success",
         "info": {
-            "total": 3,
-            "totalPage": null,
-            "page": null,
-            "next": null,
-            "prev": null
+            "total": 3
         },
         "data": [ ... ]
     }
@@ -209,11 +193,7 @@ class PagingController extends BaseController
         "title": "Perhatian",
         "message": "Success",
         "info": {
-            "total": 3,
-            "totalPage": null,
-            "page": null,
-            "next": null,
-            "prev": null
+            "total": 3
         },
         "data": [ ... ]
     }
@@ -247,9 +227,7 @@ class PagingController extends BaseController
     {
         "status": 0,
         "title": "Perhatian",
-        "message": "Failed",
-        "info": null,
-        "data": null
+        "message": "Failed"
     }
     */
     //////////////////////////////////////////////////////////////////////EMPTY
@@ -279,9 +257,7 @@ class PagingController extends BaseController
     {
         "status": -1,
         "title": "Perhatian",
-        "message": "Attempt to read property \"title\" on null",
-        "info": null,
-        "data": null
+        "message": "Attempt to read property \"title\" on null"
     }
     */
     //////////////////////////////////////////////////////////////////////TC

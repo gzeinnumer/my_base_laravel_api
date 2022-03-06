@@ -28,13 +28,17 @@ class BaseControllerSetting extends Controller
     }
 
     protected function initResponse($status, $title, $message, $data, $info) {
-        return [
-            'status' => $status,
-            'title' => $title,
-            'message' => $message,
-            'info' => $info,
-            'data' => $data,
-        ];
+        $result = new stdClass();
+        $result->status = $status;
+        $result->title = $title;
+        $result->message = $message;
+        if ($info != null) {
+            $result->info = $info;
+        }
+        if ($data != null) {
+            $result->data = $data;
+        }
+        return $result;
     }
 
     protected function responseList($apiResponse, $result, $info) {
@@ -51,10 +55,10 @@ class BaseControllerSetting extends Controller
     protected function responseSingle($apiResponse, $result) {
         $info = new stdClass();
         $info->total = 1;
-        $info->totalPage = null;
-        $info->page = null;
-        $info->next = null;
-        $info->prev = null;
+        // $info->totalPage = null;
+        // $info->page = null;
+        // $info->next = null;
+        // $info->prev = null;
         
         $response = $this->initResponse(
             status: 1,

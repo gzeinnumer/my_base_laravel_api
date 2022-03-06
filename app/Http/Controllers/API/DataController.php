@@ -13,9 +13,7 @@ class DataController extends BaseController
     {
         "status": 1,
         "title": "Perhatian",
-        "message": "Success",
-        "info": null,
-        "data": null
+        "message": "Success"
     }
     */
     //////////////////////////////////////////////////////////////////////INSERT
@@ -59,11 +57,7 @@ class DataController extends BaseController
         "title": "Perhatian",
         "message": "Success",
         "info": {
-            "total": 1,
-            "totalPage": null,
-            "page": null,
-            "next": null,
-            "prev": null
+            "total": 1
         },
         "data": { ... }
     }
@@ -95,11 +89,7 @@ class DataController extends BaseController
         "title": "Perhatian",
         "message": "Success",
         "info": {
-            "total": 5,
-            "totalPage": null,
-            "page": null,
-            "next": null,
-            "prev": null
+            "total": 5
         },
         "data": [ ... ]
     }
