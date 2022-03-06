@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\MApiResponseModel;
 use stdClass;
 
 class BaseControllerSetting extends Controller
@@ -11,19 +12,9 @@ class BaseControllerSetting extends Controller
     protected $limit = 10;
 
     public function getApiResponse($code) {
-        $apiResponse = new stdClass();
-        $apiResponse->title = "Perhatian";
-        // $apiResponse->message = "pesan";
-        if($code == 1){
-            $apiResponse->message = "Success";
-        } else if($code == 0){
-            $apiResponse->message = "Failed";
-        } else if($code == -1){
-            $apiResponse->message = "Error";
-        } else{
-            $apiResponse->message = "jagk";
-        }
-
+        $apiResponse = MApiResponseModel::select('title','message')
+                            ->where(['response_number'=>$code])
+                            ->first();
         return $apiResponse;
     }
 
