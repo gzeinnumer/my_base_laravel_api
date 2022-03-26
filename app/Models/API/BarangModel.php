@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class BarangModel extends Model
 {
     use HasFactory;
-    protected $table = 'barang';
-    protected $fillable = ['name','name2'];
+    protected $table = "barang";
+    protected $fillable = ["name", "created_at", "updated_at"];
     protected $casts = MyApp::datetime;
 }
