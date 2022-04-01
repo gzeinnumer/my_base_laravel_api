@@ -51,12 +51,13 @@ class BaseControllerSetting extends Controller
 
     protected function responseList($apiResponse, $result, $info)
     {
+        $status = $info->total > 0 ? 1 : 0;
         $response = $this->initResponse(
-            status: $info->total > 0 ? 1 : 0,
-            title: $apiResponse->title,
-            message: $apiResponse->message,
-            data: $result,
-            info: $info
+            $status,
+            $apiResponse->title,
+            $apiResponse->message,
+            $result,
+            $info
         );
         return response()->json($response, 200);
     }
@@ -71,11 +72,11 @@ class BaseControllerSetting extends Controller
         // $info->prev = null;
 
         $response = $this->initResponse(
-            status: 1,
-            title: $apiResponse->title,
-            message: $apiResponse->message,
-            data: $result,
-            info: $info
+            1, //status
+            $apiResponse->title, //title
+            $apiResponse->message, //message
+            $result, //data
+            $info //info
         );
         return response()->json($response, 200);
     }
@@ -83,11 +84,11 @@ class BaseControllerSetting extends Controller
     protected function responseSuccess($apiResponse)
     {
         $response = $this->initResponse(
-            status: 1,
-            title: $apiResponse->title,
-            message: $apiResponse->message,
-            data: null,
-            info: null
+            1, //status
+            $apiResponse->title, //title
+            $apiResponse->message, //message
+            null, //data
+            null //info
         );
         return response()->json($response, 200);
     }
@@ -95,11 +96,11 @@ class BaseControllerSetting extends Controller
     public function responseFailed($apiResponse)
     {
         $response = $this->initResponse(
-            status: 0,
-            title: $apiResponse->title,
-            message: $apiResponse->message,
-            data: null,
-            info: null,
+            0, //status
+            $apiResponse->title, //title
+            $apiResponse->message, //message
+            null, //data
+            null, //info
         );
         return response()->json($response, 200);
     }
@@ -110,11 +111,11 @@ class BaseControllerSetting extends Controller
         $apiResponse->message = $th->getMessage();
 
         $response = $this->initResponse(
-            status: -1,
-            title: $apiResponse->title,
-            message: $apiResponse->message,
-            data: null,
-            info: null,
+            -1, //status
+            $apiResponse->title, //title
+            $apiResponse->message, //message
+            null, //data
+            null, //info
         );
         return response()->json($response, 500);
     }
