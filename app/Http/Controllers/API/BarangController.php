@@ -33,7 +33,23 @@ class BarangController extends BaseController
 
             DB::beginTransaction();
 
-            BarangModel::create($r->all());
+            //type 1
+            // BarangModel::create($r->all());
+
+            //type 2
+            // $result = new ProductModel();
+            // $result->name = $r->name;
+            // $result->trans_date = $r->trans_date;
+            // $result->volume = $r->volume;
+            // $result->save();
+
+            //type 3
+            $result = new BarangModel();
+            foreach ($r->all() as $key => $value) {
+                $result->$key = $value;
+            }
+            // $result->column = "";
+            $result->save();
 
             DB::commit();
 
